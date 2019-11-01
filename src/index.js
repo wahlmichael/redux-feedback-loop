@@ -8,8 +8,22 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
+const inputReducer = (state = {}, action) => {
+    if(action.type === "ADD_FEELING"){
+        return {...state, feeling: action.payload};
+    } else if (action.type === "ADD_UNDERSTAND"){
+        return{...state, understand: action.payload}
+    } else if (action.type === "ADD_SUPPORT"){
+        return{...state, support: action.payload}
+    } else if (action.type === "ADD_COMMENT"){
+        return{...state, comment: action.payload}
+    }
+    return state;
+}
+
 const storeInstance = createStore(
     combineReducers({
+        inputReducer,
     })
 );
 
