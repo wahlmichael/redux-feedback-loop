@@ -3,10 +3,8 @@ import axios from 'axios';
 import './App.css';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import Feeling from '../Feeling/Feeling.js'
-import Understand from '../Understand/Understand.js'
-import Support from '../Support/Support.js'
-import Comment from '../Comment/Comment.js'
+import Form from '../Form/Form.js'
+
 
 class App extends Component {
   render() {
@@ -18,10 +16,10 @@ class App extends Component {
             <h4><i>Don't forget it!</i></h4>
           </header>
           <br/>
-          <Route exact path="/" component={Feeling} />
-          <Route exact path="/understand" component={Understand} />
-          <Route exact path="/support" component={Support} />
-          <Route exact path="/comment" component={Comment} />
+          <Route exact path="/" render = {() => <Form reducer="ADD_FEELING" question="How are you feeling today?" next="/understand"/>} />
+          <Route exact path="/understand" render = {() => <Form reducer="ADD_UNDERSTAND" question="How well you understand today?" next="/support"/>} />
+          <Route exact path="/support" render = {() => <Form reducer="ADD_SUPPORT" question="How well do you feel supported?" next="/question"/>} />
+          <Route exact path="/question" render = {() => <Form reducer="ADD_COMMENT" question="Do you have any questions?" next="/"/>} />
           <pre>{JSON.stringify(this.props.inputReducer)}</pre>
         </div>
 

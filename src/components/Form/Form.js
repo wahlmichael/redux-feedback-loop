@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
-class Feeling extends Component {
+class Form extends Component {
     state = {
         input: '',
-        feeling: '',
     }
 
     handleClick = () => {
@@ -13,7 +12,7 @@ class Feeling extends Component {
             ...this.state,
             feeling: this.state.input,
         }, () => {
-            this.props.dispatch({ type: "ADD_FEELING", payload: this.state.feeling })
+            this.props.dispatch({ type: this.props.reducer, payload: this.state.input })
         })
     }
 
@@ -27,17 +26,15 @@ class Feeling extends Component {
   render() {
     return (
     <>
-      <h1>Feeling</h1>
-      <input placeholder="How are you feeling?" onChange={this.handleChange}></input>
+      <h1>{this.props.question}</h1>
+      <input onChange={this.handleChange}></input>
       <button onClick={this.handleClick}>Submit</button>
       <br/>
-      <Link to="/understand" >Next</Link>
+      <Link to={this.props.next} >Next</Link>
     </>  
     )}
 }
 
 const mapReduxStateToProps = state => state;
 
-export default connect(mapReduxStateToProps)(Feeling);
-
-
+export default connect(mapReduxStateToProps)(Form);
