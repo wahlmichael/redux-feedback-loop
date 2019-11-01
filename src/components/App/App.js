@@ -4,6 +4,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Form from '../Form/Form.js'
+import Review from '../Review/Review.js'
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path="/understand" render = {() => <Form reducer="ADD_UNDERSTAND" question="How well you understand today?" next="/support"/>} />
           <Route exact path="/support" render = {() => <Form reducer="ADD_SUPPORT" question="How well do you feel supported?" next="/question"/>} />
           <Route exact path="/question" render = {() => <Form reducer="ADD_COMMENT" question="Do you have any questions?" next="/"/>} />
+          <Route exact path="/review" component={Review} />
           <pre>{JSON.stringify(this.props.inputReducer)}</pre>
         </div>
 
