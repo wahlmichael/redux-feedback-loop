@@ -17,3 +17,7 @@
   font-size: large;
 }
 
+* {
+  list-style: none;
+}
+

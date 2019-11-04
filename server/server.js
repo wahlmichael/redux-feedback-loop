@@ -11,7 +11,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.get('/feedback', (req, res) => {
-    console.log('GET /api/pizza');
+    console.log('GET /feedback');
     pool.query('SELECT * from "feedback";').then((result) => {
         res.send(result.rows);
         console.log(result.rows)
@@ -19,6 +19,12 @@ app.get('/feedback', (req, res) => {
         console.log('Error GET /feeback', error)
         res.sendStatus(500);
     });
+})
+
+app.post('/feedback', (req, res) => {
+    console.log('POST /feedback')
+    const queryText = `INSERT INTO "feedback" ("feeling", "understanding", "support", "comments") VALUES ($1, $2, $3, $4)`;
+    pool.query(queryText, [req.body.feeling, req.body.understand, req.body.support, req.body.comment])
 })
 
 
