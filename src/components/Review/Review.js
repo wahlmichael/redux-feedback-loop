@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import Axios from 'axios';
 
 class Review extends Component {
 
@@ -14,6 +15,21 @@ class Review extends Component {
 
     sendFeedback = () => {
         console.log('feedback sending')
+        Axios({
+            method: 'POST',
+            url: '/feedback',
+            data: {
+                feeling: this.props.inputReducer.feeling,
+                understand: this.props.inputReducer.understand,
+                support: this.props.inputReducer.support,
+                comment: this.props.inputReducer.comment,
+            }
+                }).then(response => {
+                    console.log('Response from server', response)
+                }).catch(error => {
+                    console.log('Error in post', error)
+            
+        })
     }
 
   render() {
