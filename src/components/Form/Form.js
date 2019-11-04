@@ -7,14 +7,25 @@ class Form extends Component {
         input: '',
     }
 
-    handleClick = () => {
+    setStateAfterClick = () => {
         this.setState({
             ...this.state,
             feeling: this.state.input,
         }, () => {
             this.props.dispatch({ type: this.props.reducer, payload: this.state.input });
             this.props.history.push(this.props.next)
-        })
+        }) 
+    }
+
+    handleClick = () => { //Checks to see what type the input was and validates accordingly
+        if(this.props.type === 'number'){
+            if (this.state.input <= 5 && this.state.input >= 0){
+                this.setStateAfterClick()
+            }else {alert("input must be between 0 and 5")}    
+        }else {
+            this.setStateAfterClick()
+        }
+
     }
 
     handleChange = (event) => {
@@ -28,7 +39,7 @@ class Form extends Component {
     return (
     <>
       <h1>{this.props.question}</h1>
-      <input onChange={this.handleChange}></input>
+      <input type={this.props.type} onChange={this.handleChange}></input>
       <br/>
       <button onClick={this.handleClick}>Next</button>
     </>  

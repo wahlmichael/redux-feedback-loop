@@ -16,10 +16,10 @@ class App extends Component {
             <h4><i>Don't forget it!</i></h4>
           </header>
           <br/>
-          <Route exact path="/" render = {() => <Form reducer="ADD_FEELING" question="How are you feeling today?" next="/understand"/>} />
-          <Route exact path="/understand" render = {() => <Form reducer="ADD_UNDERSTAND" question="How well you understand today?" next="/support"/>} />
-          <Route exact path="/support" render = {() => <Form reducer="ADD_SUPPORT" question="How well do you feel supported?" next="/question"/>} />
-          <Route exact path="/question" render = {() => <Form reducer="ADD_COMMENT" question="Do you have any questions?" next="/review"/>} />
+          <Route exact path="/" render = {() => <Form type="number" reducer="ADD_FEELING" question="How are you feeling today?" next="/understand"/>} />
+          <Route exact path="/understand" render = {() => <Form type="number" reducer="ADD_UNDERSTAND" question="How well you understand today?" next="/support"/>} />
+          <Route exact path="/support" render = {() => <Form type="number" reducer="ADD_SUPPORT" question="How well do you feel supported?" next="/question"/>} />
+          <Route exact path="/question" render = {() => <Form type="text" reducer="ADD_COMMENT" question="Do you have any questions?" next="/review"/>} />
           <Route exact path="/review" component={Review} />
           <pre>{JSON.stringify(this.props.inputReducer)}</pre>
         </div>
