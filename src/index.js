@@ -17,6 +17,8 @@ const inputReducer = (state = {}, action) => {
         return{...state, support: action.payload}
     } else if (action.type === "ADD_COMMENT"){
         return{...state, comment: action.payload}
+    } else if (action.type === "RESET_REDUX_STATE"){
+        return {};
     }
     return state;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class Review extends Component {
 
@@ -25,6 +26,7 @@ class Review extends Component {
             }
                 }).then(response => {
                     console.log('Response from server', response)
+                    this.props.history.push('/thankYou') 
                 }).catch(error => {
                     console.log('Error in post', error)         
         })
@@ -48,4 +50,4 @@ class Review extends Component {
 
 const mapReduxStateToProps = state => state;
 
-export default connect(mapReduxStateToProps)(Review);
+export default withRouter(connect(mapReduxStateToProps)(Review));
