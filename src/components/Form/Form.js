@@ -27,7 +27,7 @@ class Form extends Component {
     return (
     <>
       <h1>{this.props.question}</h1>
-      <input onChange={this.handleChange}></input>
+      <input min="1" max="5" type="number" onChange={this.handleChange}></input>
       <button onClick={this.handleClick}>Submit</button>
       <br/>
       <Link to={this.props.next} >Next</Link>
