@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Form extends Component {
     state = {
@@ -12,7 +12,8 @@ class Form extends Component {
             ...this.state,
             feeling: this.state.input,
         }, () => {
-            this.props.dispatch({ type: this.props.reducer, payload: this.state.input })
+            this.props.dispatch({ type: this.props.reducer, payload: this.state.input });
+            this.props.history.push(this.props.next)
         })
     }
 
@@ -28,13 +29,12 @@ class Form extends Component {
     <>
       <h1>{this.props.question}</h1>
       <input onChange={this.handleChange}></input>
-      <button onClick={this.handleClick}>Submit</button>
       <br/>
-      <Link to={this.props.next} >Next</Link>
+      <button onClick={this.handleClick}>Next</button>
     </>  
     )}
 }
 
 const mapReduxStateToProps = state => state;
 
-export default connect(mapReduxStateToProps)(Form);
+export default withRouter(connect(mapReduxStateToProps)(Form));

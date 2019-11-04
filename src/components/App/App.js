@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route} from 'react-router-dom';
 import Form from '../Form/Form.js'
 import Review from '../Review/Review.js'
 
